@@ -1,65 +1,84 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setPlayerClass } from "@/lib/features/player/playerSlice";
+import { CLASS_DATA, CharacterClassName } from "@/lib/types/gameTypes";
+
+export default function IntroPage() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const [name, setName] = useState("");
+  const [selectedClass, setSelectedClass] = useState<CharacterClassName | ''>('')
+
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
+    e.preventDefault()
+    if (name && selectedClass) {
+      dispatch(setPlayerClass({name, className: selectedClass as CharacterClassName}))
+      router.push('/prologue')
+    }
+  }
+
+  return(
+    <div className="max-w-4xl mx-auto p-8 pt-16">
+      <header className="mb-12 text-center">
+        <h1 className="text-4xl font-bold mb-4 tracking-tight">Title TBD</h1>
+        <p className="text-slate-400 italic">An urban fantasy text based game written in React.js</p>
+      </header>
+      <form onSubmit={handleSubmit} className="space-y-12">
+        <section className="space-y-4">
+          <label className="block text-xl font-medium">Player Character Name (50 characters max)</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value.slice(0, 50))} placeholder="Enter your name" className="w-full bg-slate-800 border border-slate-700 p-4 rounded focus:border-cyan-500 text-lg" required />
+        </section>
+        <section className="space-y-6">
+          <label className="block text-xl font-medium text-center">Select your class. This will determine starting stats.</label>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {(Object.keys(CLASS_DATA) as CharacterClassName[]).map((className) =>{
+              const stats = CLASS_DATA[className]
+              const isActive = selectedClass == className
+              return(
+                <div 
+                  key={className}
+                  onClick={() => {
+                    setSelectedClass(className)
+                  }}
+                  className={`cursor-pointer p-6 rounded border-2 transition-all ${
+                    isActive 
+                    ? 'border-cyan-500 bg-cyan-900/20'
+                    : 'border-slate-800 bg-slate-800/50 hover:border-slate-600'
+                    }`}
+                  >
+                    <h3 className="text-2xl font-bold mb-2">{className}</h3>
+                    <p className="text-sm text-slate-400 mb-4">{stats.description}</p>
+
+                    <div className="text-xs space-y-1 font-mono text-slate-300">
+                      <p>HP: {stats.maxHp}</p>
+                      <p>Stamina: {stats.maxStamina}</p>
+                      {stats.maxMana > 0 && <p>Mana: {stats.maxMana}</p>}
+                      <p>Base Damage: {stats.basicDamage}</p>
+                    </div>
+                  </div>
+              )
+            })
+            }
+          </div>
+        </section>
+        <div className="text-center">
+            <button 
+              type="submit" 
+              disabled={!name || !selectedClass}
+              className={`px-12 py-4 rounded-full font-bold text-xl transition-all ${
+                name && selectedClass
+                ? 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-900/20'
+                : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+              }`}
+              >
+                Start your journey
+              </button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </form>
     </div>
-  );
+  )
 }
