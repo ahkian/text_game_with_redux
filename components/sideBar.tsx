@@ -10,7 +10,7 @@ export default function SideBar() {
 
     if (pathname !== '/prologue') return null;
     return(
-        <aside className="w-72 h-screen flex flex-col bg-slate-900 border-r border-slate-800 p-6 shadow-2xl">
+        <aside className="w-72 h-screen flex flex-col bg-slate-900 border-r border-slate-800 p-6 pb-4 shadow-2xl">
             <div className="mb-10">
                 <h2 className="text-2xl font-black text-cyan-500 uppercase tracking-tighter">{player.name}</h2>
                 <p className="text-slate-400 font-mono text-sm tracking-widest uppercase">{player.className}</p>
