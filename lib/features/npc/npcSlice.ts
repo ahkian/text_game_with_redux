@@ -1,0 +1,51 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Character, CharacterClassName, CLASS_DATA } from "@/lib/types/gameTypes";
+
+export interface NPC extends Character {
+    id: string;
+    approvalOfPC: number;
+    isMet: boolean;
+    isAlive: boolean;
+}
+
+interface NPCstate {
+    entities: Record<string, NPC>;
+    ids: string[]
+}
+
+const initialState: NPCstate = {
+    entities: {
+
+    },
+    ids: []
+}
+
+const npcSlice = createSlice({
+    name: "npcs",
+    initialState,
+    reducers: {
+        //create NPC
+        makeNPC: (state, action: PayloadAction<NPC>) => {
+            const npcData = action.payload;
+            const id = npcData.id;
+            const npcList = state.entities;
+
+            if (!npcList[id]){
+                npcList[id] = npcData;
+                state.ids.push(id)
+            }
+        },
+        // decrement stat
+        decerementStat: (state, action: PayloadAction<{id:string, stat:string, amount:number}>) => {
+           const { id, stat, amount } = action.payload;
+           const selectedNpc = state.entities[id];
+           if(selectedNpc){
+            const currVal = (selectedNpc as any)[stat]
+           }
+        }
+        //increment stat
+        // mark NPC as dead
+        //change approval
+        //meet NPC
+    }
+})
