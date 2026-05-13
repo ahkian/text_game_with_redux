@@ -54,8 +54,11 @@ const npcSlice = createSlice({
                 }
             }
            }
-        }
+        },
         // mark NPC as dead
+        markAsDead: (state, action: PayloadAction<{id:string}>) => {
+            state.entities[action.payload.id].isAlive = false
+        }
         //change approval
         //meet NPC
     }
