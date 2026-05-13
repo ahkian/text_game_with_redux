@@ -39,8 +39,14 @@ const npcSlice = createSlice({
         decerementStat: (state, action: PayloadAction<{id:string, stat:string, amount:number}>) => {
            const { id, stat, amount } = action.payload;
            const selectedNpc = state.entities[id];
-           if(selectedNpc){
-            const currVal = (selectedNpc as any)[stat]
+           
+           if(selectedNpc && stat in selectedNpc){
+            const key = stat as keyof NPC
+            const currVal = selectedNpc[key]
+
+            if (typeof currVal === 'number'){
+                (selectedNpc[key] as number) -= amount
+            }
            }
         }
         //increment stat
