@@ -36,7 +36,8 @@ const npcSlice = createSlice({
             }
         },
         // decrement stat
-        decerementStat: (state, action: PayloadAction<{id:string, stat:string, amount:number}>) => {
+        // amount passed in must be signed if decrement
+        changeStat: (state, action: PayloadAction<{id:string, stat:string, amount:number}>) => {
            const { id, stat, amount } = action.payload;
            const selectedNpc = state.entities[id];
            
@@ -45,11 +46,15 @@ const npcSlice = createSlice({
             const currVal = selectedNpc[key]
 
             if (typeof currVal === 'number'){
-                (selectedNpc[key] as number) -= amount
+                (selectedNpc[key] as number) += amount
+
+                if (stat === 'hp' && selectedNpc.hp <= 0){
+                    selectedNpc.isAlive = false;
+                    selectedNpc.hp = 0
+                }
             }
            }
         }
-        //increment stat
         // mark NPC as dead
         //change approval
         //meet NPC
