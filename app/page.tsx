@@ -68,7 +68,7 @@ export default function IntroPage() {
         </section>
         <div className="text-center">
             <button 
-              type="button" 
+              type="submit" 
               disabled={!name || !selectedClass}
               className={`px-12 py-4 rounded-full font-bold text-xl transition-all ${
                 name && selectedClass

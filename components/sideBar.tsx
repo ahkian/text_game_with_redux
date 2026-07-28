@@ -24,7 +24,7 @@ export default function SideBar() {
             </div>
             <div className="mt-auto pt-6 border-t border-slate-800">
                 <div className="text-slate-500 text-xs uppercase font-bold mb-1">Available Funds</div>
-                <div className="</div>">
+                <div className="text-slate-50 font-mono font-bold">
                     ${player.dollars.toLocaleString()}
                 </div>
             </div>
