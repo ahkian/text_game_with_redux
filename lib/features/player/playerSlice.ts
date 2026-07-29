@@ -72,6 +72,7 @@ const playerSlice = createSlice({
 export const {
     setPlayerClass,
     takeDamage,
+    healDamage,
     updateFunds,
     spendResources,
     restPlayer

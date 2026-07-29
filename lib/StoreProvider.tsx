@@ -11,5 +11,7 @@ export default function StoreProvider({
 }) {
     const [store] = useState(() => makeStore());
 
+    console.log('StoreProvider mounted');
+
     return <Provider store={store}>{children}</Provider>;
 }

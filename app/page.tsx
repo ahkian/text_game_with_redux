@@ -13,8 +13,9 @@ export default function IntroPage() {
   const [name, setName] = useState("");
   const [selectedClass, setSelectedClass] = useState<CharacterClassName | ''>('')
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    console.log("Dispatching character name:", name);
     if (name && selectedClass) {
       dispatch(setPlayerClass({name, className: selectedClass as CharacterClassName}))
       router.push('/prologue')
