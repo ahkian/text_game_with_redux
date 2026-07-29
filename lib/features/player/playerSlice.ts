@@ -80,7 +80,8 @@ export const {
     healDamage,
     updateFunds,
     spendResources,
-    restPlayer
+    restPlayer,
+    markAsDead
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
