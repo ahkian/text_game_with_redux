@@ -16,6 +16,7 @@ const initialState: PlayerState = {
     hp: initialStats.maxHp,
     stamina: initialStats.maxStamina,
     mana: initialStats.maxMana,
+    isAlive: true,
     dollars: 100
 };
 
@@ -65,6 +66,10 @@ const playerSlice = createSlice({
             state.hp = state.maxHp;
             state.stamina = state.maxStamina;
             state.mana = state.maxMana;
+        },
+        //marks player as dead. To be implemented game over on player hp reaching 0
+        markAsDead: (state) => {
+            state.isAlive = false
         }
     }
 })

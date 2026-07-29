@@ -5,7 +5,7 @@ export interface NPC extends Character {
     id: string;
     approvalOfPC: number;
     isMet: boolean;
-    isAlive: boolean;
+    
 }
 
 interface NPCstate {

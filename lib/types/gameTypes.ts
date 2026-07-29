@@ -18,6 +18,7 @@ export interface Character {
     mana: number;
     maxMana: number;
     basicDamage: number;
+    isAlive: boolean;
 }
 
 export const CLASS_DATA: Record<CharacterClassName, ClassStats> = {
