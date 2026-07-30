@@ -65,3 +65,12 @@ const npcSlice = createSlice({
         }
     }
 })
+
+export const {
+    makeNPC,
+    changeStat,
+    markAsDead,
+    markAsMet
+} = npcSlice.actions;
+
+export default npcSlice.reducer;
