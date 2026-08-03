@@ -16,6 +16,7 @@ const initialState: PlayerState = {
     hp: initialStats.maxHp,
     stamina: initialStats.maxStamina,
     mana: initialStats.maxMana,
+    isAlive: true,
     dollars: 100
 };
 
@@ -65,6 +66,11 @@ const playerSlice = createSlice({
             state.hp = state.maxHp;
             state.stamina = state.maxStamina;
             state.mana = state.maxMana;
+            state.isAlive = true;
+        },
+        //marks player as dead.
+        markAsDead: (state) => {
+            state.isAlive = false
         }
     }
 })
@@ -75,7 +81,8 @@ export const {
     healDamage,
     updateFunds,
     spendResources,
-    restPlayer
+    restPlayer,
+    markAsDead
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

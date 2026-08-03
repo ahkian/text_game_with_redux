@@ -5,7 +5,7 @@ export interface NPC extends Character {
     id: string;
     approvalOfPC: number;
     isMet: boolean;
-    isAlive: boolean;
+    
 }
 
 interface NPCstate {
@@ -65,3 +65,12 @@ const npcSlice = createSlice({
         }
     }
 })
+
+export const {
+    makeNPC,
+    changeStat,
+    markAsDead,
+    markAsMet
+} = npcSlice.actions;
+
+export default npcSlice.reducer;

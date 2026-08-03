@@ -8,7 +8,7 @@ export default function SideBar() {
     const player = useAppSelector((state) => state.player)
     const pathname = usePathname();
 
-    if (pathname !== '/prologue') return null;
+    if (pathname == '/') return null;
     return(
         <aside className="w-72 h-screen flex flex-col bg-slate-900 border-r border-slate-800 p-6 pb-4 shadow-2xl">
             <div className="mb-10">
