@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import StoreProvider from "@/lib/StoreProvider";
 import SideBar from "@/components/sideBar";
+import GameStatusWatcher from "@/components/gameStatusWatcher";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className='bg-slate-950 text-slate-50 flex h-screen overflow-hidden'>
         <StoreProvider>
+          <GameStatusWatcher />
           <SideBar />
           <main className='flex-1 overflow-y-auto custom-scrollbar'>
             <div className="mox-w-4xl mx-auto py-12 px-8">
