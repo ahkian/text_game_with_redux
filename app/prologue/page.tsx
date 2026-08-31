@@ -24,24 +24,15 @@ export default function Prologue() {
     return(
         <div className="content-center">
             <Activity mode={playerClass === "Brawler" ? 'visible' : 'hidden'}>
-                You are a Brawler
-                <br/>
-                <button className="pl-2 pr-2 bg-transparent rounded border border-red-500 mb-3" onClick={takeAHit}>Take a hit</button>
-                <button className="pl-2 pr-2 bg-transparent rounded border border-blue-500" onClick={healAPoint}>Heal a point</button>
+                <h2 className="flex justify-center underline bold">Brawler Prologue</h2>                
             </Activity>
             <Activity mode={playerClass === "Engineer" ? 'visible' : 'hidden'}>
-                You are an Engineer
-                <br/>
-                <button className="pl-2 pr-2 bg-transparent rounded border border-red-500 mb-3" onClick={takeAHit}>Take a hit</button>
-                <br/>
-                <button className="pl-2 pr-2 bg-transparent rounded border border-blue-500" onClick={healAPoint}>Heal a point</button>
+                <h2 className="flex justify-center underline bold">Engineer Prologue</h2>
+                
             </Activity>
             <Activity mode={playerClass === "Thief" ? 'visible' : 'hidden'}>
-                You are a Thief
-                <br/>
-                <button className="pl-2 pr-2 bg-transparent rounded border border-red-500 mb-3" onClick={takeAHit}>Take a hit</button>
-                <br/>
-                <button className="pl-2 pr-2 bg-transparent rounded border border-blue-500" onClick={healAPoint}>Heal a point</button>
+                <h2 className="flex justify-center underline bold">Thief Prologue</h2>
+                
             </Activity>
         </div>
     )
