@@ -10,14 +10,26 @@ export interface NPC extends Character {
 
 interface NPCstate {
     entities: Record<string, NPC>;
-    ids: string[]
 }
 
 const initialState: NPCstate = {
     entities: {
-
-    },
-    ids: []
+        "mugger": {
+            "id": "1",
+            "approvalOfPC": 0,
+            "isMet": false,
+            "name": "Mugger",
+            "className": 'Brawler',
+            "hp": 50,
+            "maxHp": 50,
+            "stamina": 50,
+            "maxStamina": 50,
+            "mana": 0,
+            "maxMana": 0,
+            "basicDamage": 5,
+            "isAlive": true,
+        }
+    }
 }
 
 const npcSlice = createSlice({
@@ -32,7 +44,6 @@ const npcSlice = createSlice({
 
             if (!npcList[id]){
                 npcList[id] = npcData;
-                state.ids.push(id)
             }
         },
         // decrement stat
