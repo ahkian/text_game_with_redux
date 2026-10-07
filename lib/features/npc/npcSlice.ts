@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Character, CharacterClassName, CLASS_DATA } from "@/lib/types/gameTypes";
+import type { RootState } from "@/lib/store";
 
 export interface NPC extends Character {
     id: string;
@@ -74,6 +75,9 @@ const npcSlice = createSlice({
         markAsMet: (state, action: PayloadAction<{id:string, stat:string}>) => {
             state.entities[action.payload.id].isMet = true
         }
+    },
+    selectors: {
+        
     }
 })
 
@@ -85,3 +89,7 @@ export const {
 } = npcSlice.actions;
 
 export default npcSlice.reducer;
+
+export const findNpcById = (state: RootState, id: string): NPC | undefined => {
+    return Object.values(state.npc.entities).find(npc => npc.id === id)
+}

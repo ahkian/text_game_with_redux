@@ -41,6 +41,6 @@ export const CLASS_DATA: Record<CharacterClassName, ClassStats> = {
         maxStamina: 100,
         maxMana: 0,
         basicDamage: 5,
-        description: "Others will run directly at danger or kill their enemies from the other side of the city. Not you though. You like silence. Striking from dark corners and killing your foes before they even knew they were in danger. Even better is sowing chaos and getting your enemies to fight each other. At least that's what your mentor tells you. You haven't had the chance to try it out for yourself except in training exercises. But now you'll have your chance."
+        description: "Others will run directly at danger or kill their enemies from the other side of the city. Not you though. You like silence. Striking from dark corners and killing your foes before they even knew they were in danger. Even better is sowing chaos and getting your enemies to fight each other. That's what your mentor tells you anyway. You haven't had the chance to try it out for yourself except in training exercises. But now you'll have your chance."
     }
 }
