@@ -3,13 +3,15 @@ import playerReducer from "./features/player/playerSlice";
 import npcReducer from "./features/npc/npcSlice";
 import gameReducer from "./features/game/gameSlice";
 import { listenerMiddleware } from "./listenerMiddleware";
+import itemReducer from "./features/items/itemSlice"
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
             player: playerReducer,
             npc: npcReducer,
-            game: gameReducer
+            game: gameReducer,
+            item: itemReducer
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(listenerMiddleware.middleware)
         

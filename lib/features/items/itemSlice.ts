@@ -32,8 +32,49 @@ const initialState: ItemType = {
             value: 5,
             weight: 1,
             type: "weapon",
+            damage: 3
+        },
+        {
+            name: "box cutter",
+            description: "A small basic knife that's easy to explain as a work tool while still being usable as a weapon.",
+            value: 5,
+            weight: 1,
+            type: "weapon",
             damage: 2
         },
+        {
+            name: "screwdriver",
+            description: "A true dual use tool. It can be stabbed into a tender spot and then used to tighten a screw on your latest invention.",
+            value: 5,
+            weight: 0,
+            type: "weapon",
+            damage: 1
+        },
+        {
+            name: "wound-b-gone",
+            description: "Despite its name this item does not actually immediately heal wounds. It accelerates healing over time and in the short-term it numbs sensation so you can ignore the wound. Warning over use can cause permanent nerve damage.",
+            value: 7,
+            weight: 1,
+            type: "healing item",
+            healing: 20
+        }
 
     ]
 }
+
+const itemSlice = createSlice({
+    name: 'game',
+    initialState,
+    reducers: {
+        makeItem: (state, action: PayloadAction<Item>) => {
+            const itemData = action.payload
+            state.items = [...state.items, itemData]
+        }
+    }
+})
+
+export const {
+    makeItem
+} = itemSlice.actions
+
+export default itemSlice.reducer
