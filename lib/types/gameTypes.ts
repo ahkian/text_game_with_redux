@@ -6,6 +6,7 @@ export interface ClassStats {
     maxMana: number;
     basicDamage: number;
     description: string;
+    inventory?: 
 }
 
 export interface Character {

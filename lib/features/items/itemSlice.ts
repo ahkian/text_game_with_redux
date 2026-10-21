@@ -21,7 +21,7 @@ export interface Booster extends Item {
     staminaChange: number;
 }
 
-interface ItemType {
+export interface ItemType {
     items: (Item | Weapon | HealingItem | Booster)[]
 }
 const initialState: ItemType = {
