@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 import {Character, CharacterClassName, CLASS_DATA} from '../../types/gameTypes';
+import {Item, Weapon, HealingItem, Booster} from '../items/itemSlice';
 
 export interface PlayerState extends Character {
     dollars: number;
+    inventory: [];
 }
 
 const defaultClass: CharacterClassName = 'Brawler';
@@ -17,7 +18,8 @@ const initialState: PlayerState = {
     stamina: initialStats.maxStamina,
     mana: initialStats.maxMana,
     isAlive: true,
-    dollars: 100
+    dollars: 100,
+    inventory: []
 };
 
 const playerSlice = createSlice({
